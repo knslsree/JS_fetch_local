@@ -17,6 +17,23 @@ function readFilePromise(){
     });
 
 }
+// Asnc function
+async function readFileAsync(){
+    let data = await fetch('customers.json');
+    let customers = await data.json();
+    generateHTML(customers);
+}
+
+// Async function with error handling
+async function readFileAsync2(){
+    try{
+        let data = await fetch ('customers.json');
+        let customers = await data.json();
+        generateHTML(customers);
+    } catch {
+        console.log('Error,could not read from json file');
+    }
+}
 // Render HTML 
 function generateHTML(customers) {
     let html = ''; 
@@ -33,3 +50,7 @@ function generateHTML(customers) {
 
     }
 readFilePromise();
+readFileAsync();
+readFileAsync2();
+
+
